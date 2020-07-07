@@ -1,0 +1,14 @@
+--main views
+
+use ccgitranscripts;
+CREATE OR REPLACE VIEW test_grade_totals AS
+
+SELECT 
+cds.county
+, cds.District
+, cds.School
+, test.Test_Type
+
+FROM archive_test_grades test
+LEFT JOIN cds_codes cds ON cds.CDSCODE = test.CDS_CODE
+GROUP BY cds.county, test.TEST_TYPE, cds.District ,cds.School
